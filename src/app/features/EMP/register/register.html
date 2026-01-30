@@ -1,0 +1,46 @@
+<div class="register-container">
+    <h2>Create Account</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" formControlName="name" placeholder="Enter your name">
+            <small *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">Name is required (min
+                3 chars).</small>
+        </div>
+
+        <div class="form-group">
+            <label>Gmail</label>
+            <input type="email" formControlName="gmail" placeholder="example@gmail.com">
+            <small *ngIf="registerForm.get('gmail')?.touched && registerForm.get('gmail')?.invalid">Please enter a valid
+                Gmail address.</small>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="text" formControlName="mobile" placeholder="10-digit number">
+            <small *ngIf="registerForm.get('mobile')?.touched && registerForm.get('mobile')?.invalid">Enter a valid
+                10-digit number.</small>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" placeholder="Min 6 characters">
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" formControlName="confirmPassword" placeholder="Re-type password">
+            <small *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
+                Passwords do not match!
+            </small>
+        </div>
+
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    </form>
+
+    <div class="footer-link">
+        <span>Already have an account? </span>
+        <a routerLink="/login">Login here</a>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+/* Main Container */
+.selection-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f8fafc; /* Soft off-white background */
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.selection-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.selection-header h1 {
+  color: #1e293b;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.selection-header p {
+  color: #64748b;
+}
+
+/* Grid Layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Side by side on web */
+  gap: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Individual Card Styling */
+.choice-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.choice-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #3b82f6;
+}
+
+.card-icon {
+  font-size: 50px;
+  margin-bottom: 20px;
+  background: #f1f5f9;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.choice-card h3 {
+  color: #1e293b;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.choice-card p {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex-grow: 1;
+}
+
+/* Buttons */
+.select-btn {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+/* Different colors for different actions */
+.employee-card .select-btn {
+  background-color: #3b82f6; /* Blue */
+  color: white;
+}
+
+.vehicle-card .select-btn {
+  background-color: #10b981; /* Green */
+  color: white;
+}
+
+.select-btn:hover {
+  filter: brightness(90%);
+}
+
+/* Footer Link */
+.footer-login {
+  margin-top: 40px;
+  color: #64748b;
+}
+
+.footer-login a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- MOBILE VIEW --- */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr; /* Stacks cards vertically on mobile */
+    gap: 20px;
+  }
+
+  .choice-card {
+    padding: 30px 20px;
+  }
+
+  .selection-header h1 {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,217 @@
+/* --- Variables for easy theming --- */
+:host {
+  --primary-blue: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-gray: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --error-red: #ef4444;
+  --white: #ffffff;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Container --- */
+.form-container {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --- Grid Layout --- */
+.ride-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 1.25rem;
+}
+
+/* Make full-width fields */
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* --- Input Groups --- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* --- Input Styling --- */
+input,
+select {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+  outline: none;
+  background-color: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+input::placeholder {
+  color: #cbd5e1;
+}
+
+/* --- Error State --- */
+.input-error {
+  border-color: var(--error-red) !important;
+}
+
+/* --- Button --- */
+.submit-btn {
+  grid-column: 1 / -1; /* Stretch across both columns */
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--primary-blue);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 600px) {
+  .ride-form {
+    grid-template-columns: 1fr; /* Switch to 1 column on mobile */
+  }
+
+  .form-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+.read-only-bg {
+  background-color: #f1f5f9; /* Light gray */
+  color: #94a3b8; /* Muted text */
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+  background-color: #fff1f2; /* Light red tint to highlight error */
+}
+
+small {
+  display: block;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.time-preview {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background-color: #f0f7ff;
+  border-left: 4px solid #2563eb;
+  color: #1e40af;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.error-text {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: block;
+}
+
+input[formControlName='employeeId'] {
+  text-transform: uppercase;
+  text-transform: none;
+  cursor: not-allowed;
+}
+
+input[formControlName='employeeId']::placeholder {
+  text-transform: none; /* Keeps the placeholder 'EMP123' readable */
+}
+
+input[formControlName='vehicleNo'] {
+  text-transform: uppercase;
+}
+
+input[formControlName='vehicleNo']::placeholder {
+  text-transform: none; /* Keeps the placeholder 'EMP123' readable */
+}
+
+
+.input-with-button {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: #764ba2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .input-with-button {
+    flex-direction: column;
+  }
+}

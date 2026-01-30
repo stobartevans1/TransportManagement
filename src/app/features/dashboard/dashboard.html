@@ -1,0 +1,21 @@
+<div class="dashboard-header">
+  <h1>Dashboard</h1>
+  <p>Welcome back! What would you like to do today?</p>
+</div>
+
+<div class="dashboard-grid">
+  @for (item of dashboardActions; track item.title) {
+    <div class="card" (click)="navigateTo(item.route)">
+      <div class="card-icon" [style.background-color]="item.color + '15'">
+        <span [style.color]="item.color">{{ item.icon }}</span>
+      </div>
+      <div class="card-content">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+      <div class="card-footer">
+        <span [style.color]="item.color">View Details →</span>
+      </div>
+    </div>
+  }
+</div>

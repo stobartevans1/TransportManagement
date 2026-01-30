@@ -1,0 +1,90 @@
+<div class="form-container">
+    <h2 class="form-title">
+        <span>🚗</span> Book a New Ride
+    </h2>
+
+    <form [formGroup]="rideForm" (ngSubmit)="onSubmit()" class="ride-form">
+
+        <div class="form-group">
+            <label>Employee ID*</label>
+            <input formControlName="employeeId" type="text" placeholder="EMP123">
+        </div>
+
+        <div class="form-group">
+            <label>Vehicle Type</label>
+            <select formControlName="vehicleType">
+                <option value="Bike">🏍️ Bike</option>
+                <option value="Car">🚗 Car</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Vehicle No*</label>
+            <input formControlName="vehicleNo" type="text" list="vehicleNumbers" placeholder="Select Vehicle">
+
+            <datalist id="vehicleNumbers">
+                @for (v of filteredVehicles; track v['Vehicle No']) {
+                @let remaining = v.maxSeats - getBookedSeatsCount(v['Vehicle No']);
+                <option [value]="v['Vehicle No']">
+                    {{ remaining > 0 ? 'Available Seats: ' + remaining : 'FULL' }}
+                </option>
+                }
+            </datalist>
+        </div>
+
+        <div class="form-group">
+            <label>Seats Available*</label>
+            <input formControlName="vacantSeats" type="number" min="1" [max]="currentMaxSeats"
+                [readOnly]="rideForm.get('vehicleType')?.value === 'Bike'"
+                [class.input-error]="(rideForm.get('vacantSeats')?.invalid && rideForm.get('vacantSeats')?.touched) || currentMaxSeats <= 0">
+
+            <small *ngIf="rideForm.get('vacantSeats')?.hasError('min') && rideForm.get('vacantSeats')?.touched"
+                class="error-text">
+                At least 1 seat must be available to create a ride.
+            </small>
+
+            <small *ngIf="currentMaxSeats <= 0 && rideForm.get('vehicleNo')?.value" class="error-text">
+                This vehicle is fully booked for today.
+            </small>
+
+            <small *ngIf="rideForm.get('vacantSeats')?.hasError('max') && currentMaxSeats > 0" class="error-text">
+                Only {{ currentMaxSeats }} seats remaining.
+            </small>
+        </div>
+        <div class="form-group">
+            <label>From (Pickup Point)*</label>
+            <div class="input-with-button">
+                <input formControlName="pickupPoint" type="text" placeholder="Office Main Gate">
+                <button type="button" class="icon-btn" (click)="getCurrentLocation()">
+                    📍 Use My Location
+                </button>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label>To (Destination)*</label>
+            <input formControlName="destination" type="text" placeholder="Central Station">
+        </div>
+
+        <div class="form-group">
+            <label>Pick-up Time*</label>
+
+            <input formControlName="time" type="time"
+                [class.input-error]="rideForm.get('time')?.invalid && rideForm.get('time')?.touched">
+
+            <div class="time-preview" *ngIf="rideForm.get('time')?.value">
+                Selected: {{ today | date:'dd/MM/yyyy' }} {{ rideForm.get('time')?.value }}
+            </div>
+
+            <small *ngIf="rideForm.get('time')?.hasError('timeOutRange') && rideForm.get('time')?.touched"
+                class="error-text">
+                Time must be within 60 mins of current time.
+            </small>
+        </div>
+
+
+        <button type="submit" [disabled]="rideForm.invalid" class="submit-btn">
+            Create Ride Listing
+        </button>
+    </form>
+</div>

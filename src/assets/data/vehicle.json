@@ -1,0 +1,60 @@
+{
+    "vehicles": [
+       
+        {
+            "type": "Car",
+            "maxSeats": 4,
+            "Vehicle No": "AB12CD3456"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 6,
+            "Vehicle No": "EF78GH9012"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 5,
+            "Vehicle No": "IJ34KL5678"
+        },
+        {
+            "type": "Bike",
+            "maxSeats": 1,
+            "Vehicle No": "MN90OP1234"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 7,
+            "Vehicle No": "QR56ST7890"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 4,
+            "Vehicle No": "UV12WX3456"
+        },
+        {
+            "type": "Bike",
+            "maxSeats": 1,
+            "Vehicle No": "YZ78AB9012"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 5,
+            "Vehicle No": "CD34EF5678"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 6,
+            "Vehicle No": "GH90IJ1234"
+        },
+        {
+            "type": "Bike",
+            "maxSeats": 1,
+            "Vehicle No": "KL56MN7890"
+        },
+        {
+            "type": "Car",
+            "maxSeats": 4,
+            "Vehicle No": "OP12QR3456"
+        }
+    ]
+}

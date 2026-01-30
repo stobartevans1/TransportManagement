@@ -1,0 +1,140 @@
+.pick-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    h2 {
+      color: #2c3e50;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+
+      select, input {
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #764ba2;
+        }
+      }
+    }
+  }
+
+  .ride-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+
+    .ride-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #f0f0f0;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #eee;
+
+        .badge {
+          background: #764ba215;
+          color: #764ba2;
+          padding: 4px 10px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+
+        strong {
+          color: #333;
+          font-size: 0.9rem;
+        }
+      }
+
+      .card-body {
+        p {
+          margin: 8px 0;
+          color: #555;
+          font-size: 0.9rem;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          strong {
+            color: #333;
+            min-width: 50px;
+          }
+        }
+      }
+
+      .book-btn {
+        width: 100%;
+        margin-top: 20px;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:disabled {
+          background: #ccc;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .no-rides {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    color: #888;
+    font-style: italic;
+  }
+}
+
+// Mobile View Adjustments
+@media (max-width: 600px) {
+  .search-header {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .filter-bar {
+      flex-direction: column;
+    }
+  }
+}

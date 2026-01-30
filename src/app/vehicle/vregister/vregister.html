@@ -1,0 +1,58 @@
+<div class="registration-container">
+  <div class="form-card">
+    <h2>🚚 Register Your Vehicle</h2>
+    <p>Add your vehicle details to start offering rides.</p>
+
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Driver Name*</label>
+          <input formControlName="driverName" type="text" placeholder="Enter full name">
+        </div>
+
+        <div class="form-group">
+          <label>Vehicle Number*</label>
+          <input formControlName="vehicleNo" type="text" placeholder="TN01AB1234">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Contact Number*</label>
+          <input formControlName="contactNo" type="text" placeholder="10-digit mobile">
+        </div>
+
+        <div class="form-group">
+          <label>Vehicle Type*</label>
+          <select formControlName="vehicleType">
+            <option value="Bike">🏍️ Bike</option>
+            <option value="Car">🚗 Car</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+          <label>Total Seats*</label>
+          <input formControlName="vehicleSeats" type="number"
+            [readOnly]="vehicleForm.get('vehicleType')?.value === 'Bike'">
+        </div>
+
+        <div class="form-group">
+          <label>Password*</label>
+          <input formControlName="password" type="password" placeholder="Create a password">
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="vehicleForm.invalid || isSubmitting" class="submit-btn">
+        {{ isSubmitting ? 'Registering...' : 'Register Vehicle' }}
+      </button>
+
+      <div class="login-link">
+        <p>Already have an account? <a routerLink="/vehiclelogin">Login here</a></p>
+      </div>
+    </form>
+  </div>
+</div>

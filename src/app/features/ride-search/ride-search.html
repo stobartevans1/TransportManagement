@@ -1,0 +1,46 @@
+<div class="pick-container">
+  <div class="search-header">
+    <h2>🔎 Available Rides</h2>
+    <div class="filter-bar">
+      <select [(ngModel)]="selectedType" (change)="applyFilters()">
+        <option value="All">All Vehicles</option>
+        <option value="Bike">🏍️ Bike</option>
+        <option value="Car">🚗 Car</option>
+      </select>
+      <input type="time" [(ngModel)]="prefTime" (change)="applyFilters()">
+    </div>
+  </div>
+
+  <div class="date-sections">
+    @for (group of groupedRides; track group.date) {
+    <div class="date-group">
+      <!-- <h3 class="date-header">📅 {{ group.date }}</h3> -->
+      <h3 class="date-header">
+        📅 {{ group.date | date:'fullDate' }}
+      </h3>
+
+      <div class="ride-grid">
+        @for (ride of group.rides; track ride._id) {
+        <div class="ride-card">
+          <div class="card-header">
+            <span class="badge">{{ ride.vehicleType }}</span>
+            <strong>{{ ride.vehicleNo }}</strong>
+          </div>
+          <div class="card-body">
+            <p>📍 <strong>From:</strong> {{ ride.source }}</p>
+            <p>🏁 <strong>To:</strong> {{ ride.destination }}</p>
+            <p>⏰ <strong>Time:</strong> {{ ride.rideTime | date:'shortTime' }}</p>
+            <p>💺 <strong>Available:</strong> {{ ride.seats }} Seats</p>
+          </div>
+          <button class="book-btn" (click)="onBookRide(ride)">Pick This Ride</button>
+        </div>
+        }
+      </div>
+    </div>
+    } @empty {
+    <div class="no-rides">
+      <p>No available rides found matching your filters.</p>
+    </div>
+    }
+  </div>
+</div>
