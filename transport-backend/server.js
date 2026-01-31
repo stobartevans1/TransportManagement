@@ -1,35 +1,39 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const cors = require('cors');
-const cors = require('cors')({origin: true});
+const cors = require('cors');
 require('dotenv').config();
-
+const functions = require('firebase-functions');
 const authRoutes = require('./Pages/authRoutes');
 const rideRoutes = require('./Pages/rideRoutes');
 const vehicleRoutes = require('./Pages/vehicleRoutes');
 
 const app = express();
+const allowedOrigins = ['http://localhost:4200'];
 
-// Middleware
+app.use(cors({
+  origin: true, // allow all (safe for now)
+  credentials: true,
+}));
+
+
 app.use(express.json());
-app.use(cors());
 
-// Routes
+/* Routes */
 app.use('/api/auth', authRoutes);
 app.use('/api/rides', rideRoutes);
 app.use('/api/vehicles', vehicleRoutes);
 
-// MongoDB connection + server start
+/* Mongo + server */
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('✅ MongoDB Connected Successfully');
+    console.log('✅ MongoDB Connected');
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
-  .catch(err => {
-    console.error('❌ MongoDB Connection Error:', err.message);
-  });
+  .catch((err) => console.error(err));
+
+exports.api = functions.https.onRequest(app);
